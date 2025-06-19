@@ -185,37 +185,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Welcome Message Section */}
-        <section className="py-20 bg-gradient-to-br from-primary/5 to-secondary/5">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-4xl font-bold text-primary text-center mb-8">
-                Welcome in the Name of Jesus Christ
-              </h2>
-              <div className="bg-white rounded-2xl p-8 shadow-xl">
-                <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                  We are so glad you've found your way here. Whether you are visiting out of curiosity, searching for hope, or looking for a spiritual home, know this: you are not here by accident. We believe that God has a purpose for your life, and we are honored to walk with you on this journey of faith.
-                </p>
-                <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                  At the heart of everything we do is the life-changing love of Jesus Christ. Our mission is to share His grace, truth, and peace with everyone—no matter your background, questions, or struggles. In a world filled with uncertainty, we offer a message of eternal hope: that through Christ, there is forgiveness, healing, and new life.
-                </p>
-                <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                  We are a community of believers who strive to live by faith, be known by love, and be a voice of hope to those around us. Whether you're taking your first steps toward faith or have been walking with Christ for many years, we welcome you with open arms. Together, we grow, serve, and celebrate the goodness of God.
-                </p>
-                <div className="text-center mt-8">
-                  <p className="text-xl italic text-primary mb-2">
-                    "Come to me, all you who are weary and burdened, and I will give you rest."
-                  </p>
-                  <p className="text-gray-600">— Matthew 11:28</p>
-                </div>
-                <p className="text-lg text-gray-700 mt-8 text-center">
-                  May you find peace in His presence, strength in His promises, and joy in His unfailing love.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Services Section */}
         <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-4">
@@ -237,6 +206,55 @@ export default function Home() {
                 "And now I commend you to God and to the word of his grace, which is able to build you up and to give you the inheritance among all those who are sanctified."
               </p>
               <p className="text-lg text-gray-500">- Acts 20:32</p>
+            </div>
+          </div>
+        </section>
+
+        {/* GIF and Welcome Text Section */}
+        <section className="py-20 bg-gradient-to-br from-primary/10 to-secondary/10">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              {/* GIF */}
+              <div className="text-center mb-12">
+                <div className="relative w-full max-w-2xl mx-auto aspect-video rounded-2xl overflow-hidden shadow-2xl">
+                  <video
+                    src="/images/V1.mp4"
+                    className="w-full h-full object-cover"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="auto"
+                  />
+                </div>
+              </div>
+
+              {/* Welcome Text */}
+              <div className="bg-white rounded-2xl p-8 shadow-xl">
+                <h2 className="text-4xl font-bold text-primary text-center mb-8">
+                  Welcome in the Name of Jesus Christ
+                </h2>
+                <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
+                  <p>
+                    We are so glad you've found your way here. Whether you are visiting out of curiosity, searching for hope, or looking for a spiritual home, know this: you are not here by accident. We believe that God has a purpose for your life, and we are honored to walk with you on this journey of faith.
+                  </p>
+                  <p>
+                    At the heart of everything we do is the life-changing love of Jesus Christ. Our mission is to share His grace, truth, and peace with everyone—no matter your background, questions, or struggles. In a world filled with uncertainty, we offer a message of eternal hope: that through Christ, there is forgiveness, healing, and new life.
+                  </p>
+                  <p>
+                    We are a community of believers who strive to live by faith, be known by love, and be a voice of hope to those around us. Whether you're taking your first steps toward faith or have been walking with Christ for many years, we welcome you with open arms. Together, we grow, serve, and celebrate the goodness of God.
+                  </p>
+                  <div className="text-center mt-8 p-6 bg-primary/5 rounded-xl">
+                    <p className="text-xl italic text-primary mb-2 font-semibold">
+                      "Come to me, all you who are weary and burdened, and I will give you rest."
+                    </p>
+                    <p className="text-gray-600 font-medium">— Matthew 11:28</p>
+                  </div>
+                  <p className="text-center text-lg font-medium text-gray-700 mt-8">
+                    May you find peace in His presence, strength in His promises, and joy in His unfailing love.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
