@@ -31,6 +31,46 @@ const images = [
     src: '/images/NCCB2.jpeg',
     alt: 'Norwich Christian Centre Building',
     className: 'w-full h-full object-cover object-center'
+  },
+  {
+    src: '/images/P1.jpeg',
+    alt: 'Norwich Christian Church Image 1',
+    className: 'w-full h-full object-cover object-[center_15%]'
+  },
+  {
+    src: '/images/P2.jpeg',
+    alt: 'Norwich Christian Church Image 2',
+    className: 'w-full h-full object-cover object-[center_20%]'
+  },
+  {
+    src: '/images/P3.jpeg',
+    alt: 'Norwich Christian Church Image 3',
+    className: 'w-full h-full object-cover object-[center_25%]'
+  },
+  {
+    src: '/images/P4.jpeg',
+    alt: 'Norwich Christian Church Image 4',
+    className: 'w-full h-full object-cover object-[center_30%]'
+  },
+  {
+    src: '/images/P5.jpeg',
+    alt: 'Norwich Christian Church Image 5',
+    className: 'w-full h-full object-cover object-[center_20%]'
+  },
+  {
+    src: '/images/P6.jpeg',
+    alt: 'Norwich Christian Church Image 6',
+    className: 'w-full h-full object-cover object-[center_30%]'
+  },
+  {
+    src: '/images/P7.jpeg',
+    alt: 'Norwich Christian Church Image 7',
+    className: 'w-full h-full object-cover object-[center_15%]'
+  },
+  {
+    src: '/images/P8.jpeg',
+    alt: 'Norwich Christian Church Image 8',
+    className: 'w-full h-full object-cover object-[center_30%]'
   }
 ]
 
