@@ -10,7 +10,6 @@ export default function Contact() {
     email: '',
     phone: '',
     message: ''
-    
   })
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
