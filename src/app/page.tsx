@@ -177,6 +177,19 @@ export default function Home() {
                   playsInline
                   preload="auto"
                 />
+                {/* Dark Overlay */}
+                <div className="absolute inset-0 bg-black/60"></div>
+                {/* Bible Verse Message */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center text-white px-6 animate-float">
+                    <p className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
+                      "Be still and know that I am God."
+                    </p>
+                    <p className="text-xl md:text-2xl text-white/90 font-medium">
+                      —Psalm 46:10
+                    </p>
+                  </div>
+                </div>
               </div>
               <p className="text-gray-600 text-center mt-4 text-lg">
                 Watch a glimpse of our worship service
