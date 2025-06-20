@@ -99,18 +99,8 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <h2 className="text-4xl font-bold text-center mb-12 text-primary">Ministry Leaders</h2>
           <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-            <div className="flex items-center gap-8">
-              <div className="flex-1">
-                <h3 className="text-3xl font-bold mb-4 text-primary tracking-tight">
-                  Pastor Doug Laet
-                </h3>
-                <div className="w-20 h-1 bg-primary/20 mb-6"></div>
-                <p className="text-gray-600 leading-relaxed text-lg">
-                  Pastor Doug Laet has been serving as the pastor of Norwich Christian Centre since 2010. 
-                  He is dedicated to teaching God's Word and shepherding the congregation with love and wisdom.
-                </p>
-              </div>
-              <div className="relative h-[280px] w-[220px] rounded-2xl overflow-hidden shadow-lg flex-shrink-0">
+            <div className="flex flex-col items-center text-center">
+              <div className="relative h-[340px] w-[280px] rounded-2xl overflow-hidden shadow-lg mb-6">
                 <Image
                   src="/images/Pr Doug.jpg"
                   alt="Pastor Doug Laet"
@@ -118,25 +108,35 @@ export default function About() {
                   className="object-cover"
                 />
               </div>
-            </div>
-            <div className="flex items-center gap-8">
               <div className="flex-1">
                 <h3 className="text-3xl font-bold mb-4 text-primary tracking-tight">
-                  Pastor Lindy Laet
+                  Pastor Doug Laet
                 </h3>
-                <div className="w-20 h-1 bg-primary/20 mb-6"></div>
+                <div className="w-20 h-1 bg-primary/20 mb-6 mx-auto"></div>
                 <p className="text-gray-600 leading-relaxed text-lg">
-                  Pastor Lindy Laet serves alongside her husband, supporting the ministry through teaching, 
-                  counseling, and leading various church programs. Her passion is helping others grow in their faith.
+                  Pastor Doug Laet has been serving as the pastor of Norwich Christian Centre since 2010. 
+                  He is dedicated to teaching God's Word and shepherding the congregation with love and wisdom.
                 </p>
               </div>
-              <div className="relative h-[280px] w-[220px] rounded-2xl overflow-hidden shadow-lg flex-shrink-0">
+            </div>
+            <div className="flex flex-col items-center text-center">
+              <div className="relative h-[340px] w-[280px] rounded-2xl overflow-hidden shadow-lg mb-6">
                 <Image
                   src="/images/Pr Lindy1.jpg"
                   alt="Pastor Lindy Laet"
                   fill
                   className="object-cover"
                 />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-3xl font-bold mb-4 text-primary tracking-tight">
+                  Pastor Lindy Laet
+                </h3>
+                <div className="w-20 h-1 bg-primary/20 mb-6 mx-auto"></div>
+                <p className="text-gray-600 leading-relaxed text-lg">
+                  Pastor Lindy Laet serves alongside her husband, supporting the ministry through teaching, 
+                  counseling, and leading various church programs. Her passion is helping others grow in their faith.
+                </p>
               </div>
             </div>
           </div>

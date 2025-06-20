@@ -74,14 +74,14 @@ export default function Home() {
         </section>
 
         {/* Mission Statement Section */}
-        <section className="py-20 bg-gradient-to-br from-primary to-secondary">
+        <section className="py-20 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-lg">
                 LOVING GOD, REACHING SOULS, CHANGING LIVES
               </h2>
-              <div className="w-24 h-1 bg-white/30 mx-auto mb-8"></div>
-              <p className="text-2xl text-white/90">
+              <div className="w-24 h-1 bg-white/50 mx-auto mb-8 rounded-full"></div>
+              <p className="text-2xl text-white/95 font-medium drop-shadow-md">
                 THROUGH THE GOSPEL OF CHRIST
               </p>
             </div>
@@ -89,12 +89,12 @@ export default function Home() {
         </section>
 
         {/* Welcome Text Section */}
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               {/* Image Column */}
               <div className="flex flex-col items-center">
-                <div className="relative h-[400px] w-[400px] mx-auto rounded-full overflow-hidden shadow-xl">
+                <div className="relative h-[400px] w-[400px] mx-auto rounded-full overflow-hidden shadow-2xl ring-4 ring-blue-200">
                   <Image
                     src="/images/Pr Doug.jpg"
                     alt="Pastor Doug Laet - Lead Pastor of Norwich Christian Centre"
@@ -105,16 +105,16 @@ export default function Home() {
                     loading="eager"
                   />
                 </div>
-                <h3 className="text-2xl font-bold mt-4 text-primary">Pastor Doug Laet</h3>
-                <p className="text-gray-600">Lead Pastor</p>
+                <h3 className="text-2xl font-bold mt-4 text-blue-700">Pastor Doug Laet</h3>
+                <p className="text-gray-600 font-medium">Lead Pastor</p>
               </div>
 
               {/* Content Column */}
               <div className="text-center md:text-left">
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 text-primary">
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   Join us in worship and fellowship
                 </h2>
-                <p className="text-xl text-gray-600 mb-8">
+                <p className="text-xl text-gray-700 mb-8 leading-relaxed">
                   Experience the warmth of our community and the power of worship together.
                 </p>
                 <div className="flex flex-wrap items-center gap-4">
@@ -122,19 +122,19 @@ export default function Home() {
                     href="https://www.google.com/maps/dir/?api=1&destination=Long+John+Hill+Norwich+NR1+2EX"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-secondary transition-colors shadow-lg"
+                    className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
                   >
                     <FaMapMarkerAlt className="text-xl" />
                     <div className="text-left">
                       <div>Visit Us</div>
-                      <div className="text-xs">NR1 2EX</div>
+                      <div className="text-xs opacity-90">NR1 2EX</div>
                     </div>
                   </Link>
                   <Link 
                     href="https://www.facebook.com/share/16bg8vPFof/" 
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 bg-[#1877F2] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#0d6efd] transition-colors shadow-lg"
+                    className="flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-full font-semibold hover:from-green-600 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
                   >
                     <FaFacebook className="text-xl" />
                     Watch Live
@@ -143,7 +143,7 @@ export default function Home() {
                     href="#" 
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 bg-[#FF0000] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#cc0000] transition-colors shadow-lg opacity-50 cursor-not-allowed"
+                    className="flex items-center gap-2 bg-gradient-to-r from-red-500 to-pink-600 text-white px-6 py-3 rounded-full font-semibold hover:from-red-600 hover:to-pink-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 opacity-50 cursor-not-allowed"
                     onClick={(e) => e.preventDefault()}
                   >
                     <FaYoutube className="text-xl" />
@@ -199,26 +199,26 @@ export default function Home() {
         </section>
 
         {/* Services Section */}
-        <section className="py-20 bg-gray-50">
+        <section className="py-20 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold text-center mb-12 text-primary">CHURCH SERVICE</h2>
+            <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">CHURCH SERVICE</h2>
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-                <h3 className="text-2xl font-bold mb-4 text-primary">SUNDAY SERVICE</h3>
-                <p className="text-xl mb-2">10 AM</p>
+              <div className="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-purple-100 hover:border-purple-200 transform hover:scale-105">
+                <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">SUNDAY SERVICE</h3>
+                <p className="text-xl mb-2 text-gray-800 font-semibold">10 AM</p>
                 <p className="text-gray-600">Main Worship Service</p>
               </div>
-              <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-                <h3 className="text-2xl font-bold mb-4 text-primary">WEDNESDAY BIBLE STUDY</h3>
-                <p className="text-xl mb-2">7:00 PM</p>
+              <div className="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-purple-100 hover:border-purple-200 transform hover:scale-105">
+                <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">WEDNESDAY BIBLE STUDY</h3>
+                <p className="text-xl mb-2 text-gray-800 font-semibold">7:00 PM</p>
                 <p className="text-gray-600">Join us for Bible Study</p>
               </div>
             </div>
             <div className="text-center mt-12">
-              <p className="text-xl italic text-gray-600 mb-4">
+              <p className="text-xl italic text-gray-700 mb-4 font-medium">
                 "And now I commend you to God and to the word of his grace, which is able to build you up and to give you the inheritance among all those who are sanctified."
               </p>
-              <p className="text-lg text-gray-500">- Acts 20:32</p>
+              <p className="text-lg text-gray-500 font-medium">- Acts 20:32</p>
             </div>
           </div>
         </section>
@@ -273,50 +273,51 @@ export default function Home() {
         </section>
 
         {/* Ministry Bio Section */}
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-gradient-to-br from-blue-50 via-cyan-50 to-teal-50">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold text-center mb-12 text-primary">MINISTRY LEADERS</h2>
+            <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">MINISTRY LEADERS</h2>
             <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-              <div className="flex items-center gap-8">
-                <div className="flex-1">
-                  <h3 className="text-3xl font-bold mb-4 text-primary tracking-tight">
-                    Pastor Doug Laet
-                  </h3>
-                  <div className="w-20 h-1 bg-primary/20 mb-6"></div>
-                  <p className="text-gray-600 leading-relaxed text-lg">
-                    Pastor Doug Laet has been serving as the pastor of Norwich Christian Centre since 2010. 
-                    He is dedicated to teaching God's Word and shepherding the congregation with love and wisdom.
-                  </p>
-                </div>
-                <div className="relative h-[280px] w-[220px] rounded-2xl overflow-hidden shadow-lg flex-shrink-0">
+              <div className="flex flex-col items-center text-center bg-white p-8 rounded-2xl shadow-xl border border-blue-100">
+                <div className="relative h-[300px] w-[240px] rounded-2xl overflow-hidden shadow-lg ring-4 ring-blue-200 mb-6">
                   <Image
                     src="/images/Pr Doug.jpg"
                     alt="Pastor Doug Laet"
                     fill
                     className="object-cover"
-                    sizes="(max-width: 220px) 100vw, 220px"
+                    sizes="(max-width: 240px) 100vw, 240px"
                     quality={85}
                   />
                 </div>
-              </div>
-              <div className="flex items-center gap-8">
                 <div className="flex-1">
-                  <h3 className="text-3xl font-bold mb-4 text-primary tracking-tight">
-                    Pastor Lindy Laet
+                  <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent tracking-tight">
+                    Pastor Doug Laet
                   </h3>
-                  <div className="w-20 h-1 bg-primary/20 mb-6"></div>
-                  <p className="text-gray-600 leading-relaxed text-lg">
-                    Pastor Lindy Laet serves alongside her husband, supporting the ministry through teaching, 
-                    counseling, and leading various church programs. Her passion is helping others grow in their faith.
+                  <div className="w-20 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 mb-6 rounded-full mx-auto"></div>
+                  <p className="text-gray-700 leading-relaxed text-lg">
+                    Pastor Doug Laet has been serving as the pastor of Norwich Christian Centre since 2010. 
+                    He is dedicated to teaching God's Word and shepherding the congregation with love and wisdom.
                   </p>
                 </div>
-                <div className="relative h-[280px] w-[220px] rounded-2xl overflow-hidden shadow-lg flex-shrink-0">
+              </div>
+              <div className="flex flex-col items-center text-center bg-white p-8 rounded-2xl shadow-xl border border-blue-100">
+                <div className="relative h-[300px] w-[240px] rounded-2xl overflow-hidden shadow-lg ring-4 ring-blue-200 mb-6">
                   <Image
                     src="/images/Pr Lindy1.jpg"
                     alt="Pastor Lindy Laet"
                     fill
                     className="object-cover"
+                    sizes="(max-width: 240px) 100vw, 240px"
                   />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent tracking-tight">
+                    Pastor Lindy Laet
+                  </h3>
+                  <div className="w-20 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 mb-6 rounded-full mx-auto"></div>
+                  <p className="text-gray-700 leading-relaxed text-lg">
+                    Pastor Lindy Laet serves alongside her husband, supporting the ministry through teaching, 
+                    counseling, and leading various church programs. Her passion is helping others grow in their faith.
+                  </p>
                 </div>
               </div>
             </div>
@@ -324,50 +325,50 @@ export default function Home() {
         </section>
 
         {/* Image Slider Section */}
-        <section className="py-20 bg-gray-50">
+        <section className="py-20 bg-gradient-to-br from-purple-50 via-pink-50 to-rose-50">
           <div className="container mx-auto px-4">
             <ImageSlider />
           </div>
         </section>
 
         {/* Join Our Family Section */}
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold text-center mb-12 text-primary">Join Our Family</h2>
+            <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">Join Our Family</h2>
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="text-center md:text-left">
-                <p className="text-xl text-gray-600 mb-8">
+                <p className="text-xl text-gray-700 mb-8 leading-relaxed">
                   We welcome you to be part of our church family. Whether you're new to faith or have been walking with God for years, 
                   there's a place for you here. Join us as we grow together in Christ's love and serve our community.
                 </p>
                 <div className="flex flex-col md:flex-row items-center md:items-start gap-4">
                   <Link 
                     href="/contact"
-                    className="bg-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-secondary transition-colors shadow-lg"
+                    className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-8 py-3 rounded-full font-semibold hover:from-emerald-700 hover:to-teal-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
                   >
                     Get in Touch
                   </Link>
                 </div>
               </div>
-              <div className="bg-gray-50 p-8 rounded-2xl shadow-lg">
-                <blockquote className="text-xl italic text-gray-600">
+              <div className="bg-white p-8 rounded-2xl shadow-xl border border-emerald-100">
+                <blockquote className="text-xl italic text-gray-700">
                   "Being part of Norwich Christian Centre has been a blessing to our family. The warm community and 
                   strong biblical teaching have helped us grow in our faith."
                 </blockquote>
-                <p className="mt-4 text-gray-500">- A Church Member</p>
+                <p className="mt-4 text-gray-500 font-medium">- A Church Member</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* Leadership Team Section */}
-        <section className="py-20 bg-gradient-to-br from-primary/5 to-secondary/5">
+        <section className="py-20 bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">
+              <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent mb-6">
                 Faith Community
               </h2>
-              <div className="relative w-full max-w-4xl mx-auto h-[400px] mb-8 rounded-xl overflow-hidden shadow-xl">
+              <div className="relative w-full max-w-4xl mx-auto h-[400px] mb-8 rounded-xl overflow-hidden shadow-2xl ring-4 ring-orange-200">
                 <Image
                   src="/images/Fellowship Team3.jpg"
                   alt="Faith Community Fellowship at Norwich Christian Centre"
@@ -399,13 +400,13 @@ export default function Home() {
         </section>
 
         {/* About Section */}
-        <section id="about-section" className="py-20 bg-white scroll-mt-16">
+        <section id="about-section" className="py-20 bg-gradient-to-br from-slate-50 via-gray-50 to-zinc-50 scroll-mt-16">
           <div className="container mx-auto px-4">
             <ScrollAnimation animation="slide-up">
-              <h2 className="text-4xl font-bold text-center mb-12 text-primary">About Our Church</h2>
+              <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-slate-600 to-gray-600 bg-clip-text text-transparent">About Our Church</h2>
               
               <div className="max-w-4xl mx-auto mb-16">
-                <p className="text-xl text-center text-dark leading-relaxed">
+                <p className="text-xl text-center text-gray-700 leading-relaxed font-medium">
                   We strive to be a multi-racial, multi-ethnic Revival Worship Center where there is emphasis of Bible teaching, 
                   Discipleship, Worship, Soul winning, love and fear of God.
                 </p>
@@ -413,20 +414,20 @@ export default function Home() {
             </ScrollAnimation>
 
             <div className="grid md:grid-cols-3 gap-8">
-              <ScrollAnimation animation="slide-in" className="text-center p-6 bg-light rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <h3 className="text-2xl font-semibold mb-4 text-secondary">Our Mission</h3>
-                <p className="text-dark">To spread the love of Christ and build a community of believers who serve God and others.</p>
+              <ScrollAnimation animation="slide-in" className="text-center p-6 bg-white rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-slate-100 hover:border-slate-200 transform hover:scale-105">
+                <h3 className="text-2xl font-semibold mb-4 bg-gradient-to-r from-slate-600 to-gray-600 bg-clip-text text-transparent">Our Mission</h3>
+                <p className="text-gray-700">To spread the love of Christ and build a community of believers who serve God and others.</p>
               </ScrollAnimation>
 
-              <ScrollAnimation animation="slide-in" className="text-center p-6 bg-light rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <h3 className="text-2xl font-semibold mb-4 text-secondary">Our Vision</h3>
-                <p className="text-dark">To be a beacon of hope and transformation in Norwich through faith, love, and service.</p>
+              <ScrollAnimation animation="slide-in" className="text-center p-6 bg-white rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-slate-100 hover:border-slate-200 transform hover:scale-105">
+                <h3 className="text-2xl font-semibold mb-4 bg-gradient-to-r from-slate-600 to-gray-600 bg-clip-text text-transparent">Our Vision</h3>
+                <p className="text-gray-700">To be a beacon of hope and transformation in Norwich through faith, love, and service.</p>
               </ScrollAnimation>
 
-              <ScrollAnimation animation="slide-in" className="text-center p-6 bg-light rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <h3 className="text-2xl font-semibold mb-4 text-secondary">Our Values</h3>
-                <ul className="text-dark space-y-2">
-                  <li className="hover:text-primary transition-colors">Love and fear God, Family, Love, Accountability, Excellency, Humility and Servanthood</li>
+              <ScrollAnimation animation="slide-in" className="text-center p-6 bg-white rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-slate-100 hover:border-slate-200 transform hover:scale-105">
+                <h3 className="text-2xl font-semibold mb-4 bg-gradient-to-r from-slate-600 to-gray-600 bg-clip-text text-transparent">Our Values</h3>
+                <ul className="text-gray-700 space-y-2">
+                  <li className="hover:text-slate-600 transition-colors">Love and fear God, Family, Love, Accountability, Excellency, Humility and Servanthood</li>
                 </ul>
               </ScrollAnimation>
             </div>
