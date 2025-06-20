@@ -3,10 +3,7 @@
 import { useEffect, useState } from 'react'
 
 const messages = [
-  'Outward Focused',
-  'Life Giving',
-  'Spirit of excellence',
-  'Christ Centred'
+  'Come to me, all who are weary and burdened and I will give you rest.  '
 ]
 
 export default function AnimatedText() {
@@ -15,14 +12,14 @@ export default function AnimatedText() {
   useEffect(() => {
     const interval = setInterval(() => {
       setPosition((prevPosition) => {
-        const newPosition = prevPosition - 1
+        const newPosition = prevPosition - 0.3
         // Reset position when we've scrolled the width of one message
         if (newPosition <= -100) {
           return 0
         }
         return newPosition
       })
-    }, 50) // Update position every 50ms for smooth animation
+    }, 50) // Update position every 50ms for slower animation
 
     return () => clearInterval(interval)
   }, [])
@@ -37,12 +34,23 @@ export default function AnimatedText() {
             transition: 'transform 0.05s linear',
           }}
         >
+          {/* Duplicate the message to create seamless loop */}
           {messages.map((message, index) => (
             <div
-              key={index}
-              className="inline-block w-full text-center px-4"
+              key={`first-${index}`}
+              className="inline-block w-full text-center px-8"
             >
-              <h3 className="text-4xl md:text-5xl font-extrabold text-primary tracking-wide">
+              <h3 className="text-2xl md:text-3xl font-bold text-primary tracking-wide">
+                {message}
+              </h3>
+            </div>
+          ))}
+          {messages.map((message, index) => (
+            <div
+              key={`second-${index}`}
+              className="inline-block w-full text-center px-8"
+            >
+              <h3 className="text-2xl md:text-3xl font-bold text-primary tracking-wide">
                 {message}
               </h3>
             </div>
