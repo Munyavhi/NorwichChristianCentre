@@ -1,9 +1,10 @@
 'use client'
 
-import { FaMusic, FaPray, FaBook, FaHandHoldingHeart, FaUsers } from 'react-icons/fa'
+import { FaMusic, FaPray, FaBook, FaHandHoldingHeart, FaUsers, FaPlay, FaPause } from 'react-icons/fa'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination, Navigation } from 'swiper/modules'
 import Image from 'next/image'
+import { useState, useRef } from 'react'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
@@ -11,6 +12,22 @@ import 'swiper/css/navigation'
 export default function Services() {
   // Test element to verify updates
   console.log('Services page is rendering')
+  const [isPlaying, setIsPlaying] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  const togglePlayPause = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause()
+      } else {
+        videoRef.current.play()
+      }
+      setIsPlaying(!isPlaying)
+    }
+  }
+
+  const handleVideoPlay = () => setIsPlaying(true)
+  const handleVideoPause = () => setIsPlaying(false)
 
   const slides = [
     {
@@ -62,35 +79,46 @@ export default function Services() {
 
       {/* GIF/Video Section */}
       <div className="container mx-auto px-4 py-12">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-white text-center mb-8">
-            Experience Our Worship
-          </h2>
+        <div className="max-w-2xl mx-auto">
           <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl shadow-primary/20">
             <video
-              src="/images/NCCV1.mp4"
+              src="/images/V2.mp4"
               className="w-full h-full object-cover object-center"
               style={{ 
                 objectPosition: 'center 10%',
-                filter: 'brightness(1.05) contrast(1.05)',
+                filter: 'brightness(0.8) contrast(1.1)',
                 transform: 'scale(1.02)'
               }}
-              autoPlay
               loop
-              muted
               playsInline
               preload="auto"
+              ref={videoRef}
+              onPlay={handleVideoPlay}
+              onPause={handleVideoPause}
             />
+            {/* Custom Play/Pause Button Overlay */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <button
+                onClick={togglePlayPause}
+                className="bg-black/50 hover:bg-black/70 text-white p-6 rounded-full transition-all duration-300 transform hover:scale-110 backdrop-blur-sm z-10"
+              >
+                {isPlaying ? (
+                  <FaPause className="text-4xl" />
+                ) : (
+                  <FaPlay className="text-4xl ml-2" />
+                )}
+              </button>
+            </div>
           </div>
-          <p className="text-white/80 text-center mt-4 text-lg">
-            Watch a glimpse of our worship service
+          <p className="text-gray-600 text-center mt-4 text-lg">
+            
           </p>
         </div>
       </div>
 
       <div className="container mx-auto px-4 py-20">
         <h1 className="text-4xl md:text-5xl font-bold text-white text-center mb-16">
-          Our Sunday Service
+          Our Preacher
         </h1>
 
         <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">

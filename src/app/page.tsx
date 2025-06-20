@@ -2,14 +2,32 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { FaFacebook, FaYoutube, FaMapMarkerAlt, FaChurch, FaClock, FaBook, FaPhone, FaEnvelope } from 'react-icons/fa'
+import { FaFacebook, FaYoutube, FaMapMarkerAlt, FaChurch, FaClock, FaBook, FaPhone, FaEnvelope, FaPlay, FaPause } from 'react-icons/fa'
 import Script from 'next/script'
 import ScrollAnimation from '@/components/ScrollAnimation'
 import ImageSlider from '@/components/ImageSlider'
 import LeadershipCard from '@/components/LeadershipCard'
 import AnimatedText from '@/components/AnimatedText'
+import { useState, useRef } from 'react'
 
 export default function Home() {
+  const [isPlaying, setIsPlaying] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  const togglePlayPause = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause()
+      } else {
+        videoRef.current.play()
+      }
+      setIsPlaying(!isPlaying)
+    }
+  }
+
+  const handleVideoPlay = () => setIsPlaying(true)
+  const handleVideoPause = () => setIsPlaying(false)
+
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Church',
@@ -160,7 +178,7 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold text-primary text-center mb-8">
-                Experience Our Worship
+                Our Preacher
               </h2>
               <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl shadow-primary/20">
                 <video
@@ -192,7 +210,7 @@ export default function Home() {
                 </div>
               </div>
               <p className="text-gray-600 text-center mt-4 text-lg">
-                Watch a glimpse of our worship service
+                
               </p>
             </div>
           </div>
@@ -235,10 +253,39 @@ export default function Home() {
                     className="w-full h-full object-cover"
                     autoPlay
                     loop
-                    muted
                     playsInline
                     preload="auto"
+                    ref={videoRef}
+                    onPlay={handleVideoPlay}
+                    onPause={handleVideoPause}
                   />
+                  {/* Custom Play/Pause Button Overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <button
+                      onClick={togglePlayPause}
+                      className="bg-black/50 hover:bg-black/70 text-white p-6 rounded-full transition-all duration-300 transform hover:scale-110 backdrop-blur-sm z-10"
+                    >
+                      {isPlaying ? (
+                        <FaPause className="text-4xl" />
+                      ) : (
+                        <FaPlay className="text-4xl ml-2" />
+                      )}
+                    </button>
+                  </div>
+                </div>
+                <div className="mt-6">
+                  <p className="text-xl text-gray-700 mb-4">
+                    Watch our live services on Facebook
+                  </p>
+                  <a 
+                    href="https://www.facebook.com/share/1CKfvCe5WD/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-full font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                  >
+                    <FaFacebook className="text-xl" />
+                    Watch Live on Facebook
+                  </a>
                 </div>
               </div>
 
