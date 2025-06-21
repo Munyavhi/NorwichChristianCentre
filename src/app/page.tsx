@@ -21,31 +21,37 @@ export default function Home() {
     console.log('Component mounted, ensuring videos are paused')
     if (firstVideoRef.current) {
       firstVideoRef.current.pause()
+      firstVideoRef.current.currentTime = 0
     }
     if (secondVideoRef.current) {
       secondVideoRef.current.pause()
+      secondVideoRef.current.currentTime = 0
     }
     setIsPlayingFirst(false)
     setIsPlayingSecond(false)
   }, [])
 
+  // Function to pause all videos except the specified one
+  const pauseAllVideosExcept = (exceptVideoRef: React.RefObject<HTMLVideoElement>) => {
+    if (firstVideoRef.current && firstVideoRef.current !== exceptVideoRef.current) {
+      firstVideoRef.current.pause()
+      setIsPlayingFirst(false)
+    }
+    if (secondVideoRef.current && secondVideoRef.current !== exceptVideoRef.current) {
+      secondVideoRef.current.pause()
+      setIsPlayingSecond(false)
+    }
+  }
+
   const handlePlayFirst = () => {
     console.log('First video playing, pausing second video')
-    // First pause the second video
-    if (secondVideoRef.current) {
-      secondVideoRef.current.pause()
-    }
-    // Update states
+    // Pause all other videos
+    pauseAllVideosExcept(firstVideoRef)
+    // Update state
     setIsPlayingFirst(true)
     setIsPlayingSecond(false)
-    // Double-check after a small delay
-    setTimeout(() => {
-      if (secondVideoRef.current && !secondVideoRef.current.paused) {
-        console.log('Force pausing second video')
-        secondVideoRef.current.pause()
-      }
-    }, 100)
   }
+
   const handlePauseFirst = () => {
     console.log('First video paused')
     setIsPlayingFirst(false)
@@ -53,45 +59,52 @@ export default function Home() {
 
   const handlePlaySecond = () => {
     console.log('Second video playing, pausing first video')
-    // First pause the first video
-    if (firstVideoRef.current) {
-      firstVideoRef.current.pause()
-    }
-    // Update states
+    // Pause all other videos
+    pauseAllVideosExcept(secondVideoRef)
+    // Update state
     setIsPlayingSecond(true)
     setIsPlayingFirst(false)
-    // Double-check after a small delay
-    setTimeout(() => {
-      if (firstVideoRef.current && !firstVideoRef.current.paused) {
-        console.log('Force pausing first video')
-        firstVideoRef.current.pause()
-      }
-    }, 100)
   }
+
   const handlePauseSecond = () => {
     console.log('Second video paused')
     setIsPlayingSecond(false)
   }
 
-  const togglePlayPauseFirst = () => {
+  const togglePlayPauseFirst = async () => {
     if (firstVideoRef.current) {
-      if (isPlayingFirst) {
-        console.log('Pausing first video')
-        firstVideoRef.current.pause()
-      } else {
-        console.log('Playing first video')
-        firstVideoRef.current.play()
+      try {
+        if (isPlayingFirst) {
+          console.log('Pausing first video')
+          firstVideoRef.current.pause()
+        } else {
+          console.log('Playing first video')
+          // Pause all other videos first
+          pauseAllVideosExcept(firstVideoRef)
+          // Then play this video
+          await firstVideoRef.current.play()
+        }
+      } catch (error) {
+        console.error('Error toggling first video:', error)
       }
     }
   }
-  const togglePlayPauseSecond = () => {
+
+  const togglePlayPauseSecond = async () => {
     if (secondVideoRef.current) {
-      if (isPlayingSecond) {
-        console.log('Pausing second video')
-        secondVideoRef.current.pause()
-      } else {
-        console.log('Playing second video')
-        secondVideoRef.current.play()
+      try {
+        if (isPlayingSecond) {
+          console.log('Pausing second video')
+          secondVideoRef.current.pause()
+        } else {
+          console.log('Playing second video')
+          // Pause all other videos first
+          pauseAllVideosExcept(secondVideoRef)
+          // Then play this video
+          await secondVideoRef.current.play()
+        }
+      } catch (error) {
+        console.error('Error toggling second video:', error)
       }
     }
   }
@@ -260,7 +273,7 @@ export default function Home() {
                   loop
                   muted
                   playsInline
-                  preload="auto"
+                  preload="metadata"
                   ref={firstVideoRef}
                   onPlay={handlePlayFirst}
                   onPause={handlePauseFirst}
@@ -323,8 +336,9 @@ export default function Home() {
                     src="/images/V1.mp4"
                     className="w-full h-full object-cover"
                     loop
+                    muted
                     playsInline
-                    preload="auto"
+                    preload="metadata"
                     ref={secondVideoRef}
                     onPlay={handlePlaySecond}
                     onPause={handlePauseSecond}
