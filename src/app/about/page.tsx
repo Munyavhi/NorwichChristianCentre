@@ -1,40 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import LeadershipCard from '@/components/LeadershipCard'
 
 export default function About() {
-  const router = useRouter()
-  const [isLoading, setIsLoading] = useState(true)
-
-  useEffect(() => {
-    // Add a small delay to ensure smooth transition
-    const timer = setTimeout(() => {
-      router.push('/#about-section')
-      setIsLoading(false)
-    }, 100)
-
-    return () => clearTimeout(timer)
-  }, [router])
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="flex flex-col items-center">
-          <div className="relative w-16 h-16">
-            {/* Outer ring */}
-            <div className="absolute inset-0 border-4 border-primary/20 rounded-full"></div>
-            {/* Animated ring */}
-            <div className="absolute inset-0 border-4 border-t-primary border-r-secondary border-b-accent border-l-transparent rounded-full animate-spin"></div>
-          </div>
-          <p className="mt-4 text-primary font-semibold animate-pulse">Loading...</p>
-        </div>
-      </div>
-    )
-  }
-
   return (
     <div className="min-h-screen relative">
       {/* Animated Background */}
@@ -95,6 +64,39 @@ export default function About() {
           </div>
         </div>
 
+        {/* About Our Church Section */}
+        <div className="py-20 bg-gradient-to-br from-slate-50 via-gray-50 to-zinc-50">
+          <div className="container mx-auto px-4">
+            <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-slate-600 to-gray-600 bg-clip-text text-transparent">About Our Church</h2>
+            
+            <div className="max-w-4xl mx-auto mb-16">
+              <p className="text-xl text-center text-gray-700 leading-relaxed font-medium">
+                We strive to be a multi-racial, multi-ethnic Revival Worship Center where there is emphasis of Bible teaching, 
+                Discipleship, Worship, Soul winning, love and fear of God.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="text-center p-6 bg-white rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-slate-100 hover:border-slate-200 transform hover:scale-105">
+                <h3 className="text-2xl font-semibold mb-4 bg-gradient-to-r from-slate-600 to-gray-600 bg-clip-text text-transparent">Our Mission</h3>
+                <p className="text-gray-700">To spread the love of Christ and build a community of believers who serve God and others.</p>
+              </div>
+
+              <div className="text-center p-6 bg-white rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-slate-100 hover:border-slate-200 transform hover:scale-105">
+                <h3 className="text-2xl font-semibold mb-4 bg-gradient-to-r from-slate-600 to-gray-600 bg-clip-text text-transparent">Our Vision</h3>
+                <p className="text-gray-700">To be a beacon of hope and transformation in Norwich through faith, love, and service.</p>
+              </div>
+
+              <div className="text-center p-6 bg-white rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-slate-100 hover:border-slate-200 transform hover:scale-105">
+                <h3 className="text-2xl font-semibold mb-4 bg-gradient-to-r from-slate-600 to-gray-600 bg-clip-text text-transparent">Our Values</h3>
+                <ul className="text-gray-700 space-y-2">
+                  <li className="hover:text-slate-600 transition-colors">Love and fear God, Family, Love, Accountability, Excellency, Humility and Servanthood</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Ministry Leaders Section */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <h2 className="text-4xl font-bold text-center mb-12 text-primary">Ministry Leaders</h2>
@@ -138,6 +140,43 @@ export default function About() {
                   counseling, and leading various church programs. Her passion is helping others grow in their faith.
                 </p>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Faith Community Section */}
+        <div className="py-20 bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent mb-6">
+                Faith Community
+              </h2>
+              <div className="relative w-full max-w-4xl mx-auto h-[400px] mb-8 rounded-xl overflow-hidden shadow-2xl ring-4 ring-orange-200">
+                <Image
+                  src="/images/Fellowship Team3.jpg"
+                  alt="Faith Community Fellowship at Norwich Christian Centre"
+                  fill
+                  className="object-cover"
+                  priority
+                  sizes="(max-width: 1200px) 100vw, 1200px"
+                  quality={85}
+                />
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              <LeadershipCard
+                image="/images/CCC1.jpg"
+                shape="circle"
+              />
+              <LeadershipCard
+                image="/images/CCC2.jpeg"
+                shape="rounded"
+              />
+              <LeadershipCard
+                image="/images/CCC4.jpeg"
+                shape="rounded"
+              />
             </div>
           </div>
         </div>
