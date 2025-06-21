@@ -31,6 +31,27 @@ export default function Home() {
     setIsPlayingSecond(false)
   }, [])
 
+  // Additional safeguard to prevent autoplay
+  useEffect(() => {
+    const preventAutoplay = () => {
+      if (secondVideoRef.current) {
+        secondVideoRef.current.pause()
+        setIsPlayingSecond(false)
+      }
+    }
+    
+    // Prevent autoplay on load
+    preventAutoplay()
+    
+    // Also prevent autoplay when video metadata loads
+    if (secondVideoRef.current) {
+      secondVideoRef.current.addEventListener('loadedmetadata', preventAutoplay)
+      return () => {
+        secondVideoRef.current?.removeEventListener('loadedmetadata', preventAutoplay)
+      }
+    }
+  }, [])
+
   // Function to pause all videos except the specified one
   const pauseAllVideosExcept = (exceptVideoRef: React.RefObject<HTMLVideoElement>) => {
     if (firstVideoRef.current && firstVideoRef.current !== exceptVideoRef.current) {
@@ -338,7 +359,8 @@ export default function Home() {
                     loop
                     muted
                     playsInline
-                    preload="metadata"
+                    preload="none"
+                    poster="/images/V1.mp4"
                     ref={secondVideoRef}
                     onPlay={handlePlaySecond}
                     onPause={handlePauseSecond}
