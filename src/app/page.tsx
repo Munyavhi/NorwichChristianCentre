@@ -189,7 +189,6 @@ export default function Home() {
                     filter: 'brightness(1.05) contrast(1.05)',
                     transform: 'scale(1.02)'
                   }}
-                  autoPlay
                   loop
                   muted
                   playsInline
@@ -251,7 +250,6 @@ export default function Home() {
                   <video
                     src="/images/V1.mp4"
                     className="w-full h-full object-cover"
-                    autoPlay
                     loop
                     playsInline
                     preload="auto"
