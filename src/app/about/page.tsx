@@ -163,21 +163,6 @@ export default function About() {
                 />
               </div>
             </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              <LeadershipCard
-                image="/images/CCC1.jpg"
-                shape="circle"
-              />
-              <LeadershipCard
-                image="/images/CCC2.jpeg"
-                shape="rounded"
-              />
-              <LeadershipCard
-                image="/images/CCC4.jpeg"
-                shape="rounded"
-              />
-            </div>
           </div>
         </div>
       </div>
