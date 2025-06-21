@@ -8,25 +8,93 @@ import ScrollAnimation from '@/components/ScrollAnimation'
 import ImageSlider from '@/components/ImageSlider'
 import LeadershipCard from '@/components/LeadershipCard'
 import AnimatedText from '@/components/AnimatedText'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 export default function Home() {
-  const [isPlaying, setIsPlaying] = useState(false)
-  const videoRef = useRef<HTMLVideoElement>(null)
+  const [isPlayingFirst, setIsPlayingFirst] = useState(false)
+  const [isPlayingSecond, setIsPlayingSecond] = useState(false)
+  const firstVideoRef = useRef<HTMLVideoElement>(null)
+  const secondVideoRef = useRef<HTMLVideoElement>(null)
 
-  const togglePlayPause = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause()
-      } else {
-        videoRef.current.play()
-      }
-      setIsPlaying(!isPlaying)
+  // Ensure both videos are paused when component mounts
+  useEffect(() => {
+    console.log('Component mounted, ensuring videos are paused')
+    if (firstVideoRef.current) {
+      firstVideoRef.current.pause()
     }
+    if (secondVideoRef.current) {
+      secondVideoRef.current.pause()
+    }
+    setIsPlayingFirst(false)
+    setIsPlayingSecond(false)
+  }, [])
+
+  const handlePlayFirst = () => {
+    console.log('First video playing, pausing second video')
+    // First pause the second video
+    if (secondVideoRef.current) {
+      secondVideoRef.current.pause()
+    }
+    // Update states
+    setIsPlayingFirst(true)
+    setIsPlayingSecond(false)
+    // Double-check after a small delay
+    setTimeout(() => {
+      if (secondVideoRef.current && !secondVideoRef.current.paused) {
+        console.log('Force pausing second video')
+        secondVideoRef.current.pause()
+      }
+    }, 100)
+  }
+  const handlePauseFirst = () => {
+    console.log('First video paused')
+    setIsPlayingFirst(false)
   }
 
-  const handleVideoPlay = () => setIsPlaying(true)
-  const handleVideoPause = () => setIsPlaying(false)
+  const handlePlaySecond = () => {
+    console.log('Second video playing, pausing first video')
+    // First pause the first video
+    if (firstVideoRef.current) {
+      firstVideoRef.current.pause()
+    }
+    // Update states
+    setIsPlayingSecond(true)
+    setIsPlayingFirst(false)
+    // Double-check after a small delay
+    setTimeout(() => {
+      if (firstVideoRef.current && !firstVideoRef.current.paused) {
+        console.log('Force pausing first video')
+        firstVideoRef.current.pause()
+      }
+    }, 100)
+  }
+  const handlePauseSecond = () => {
+    console.log('Second video paused')
+    setIsPlayingSecond(false)
+  }
+
+  const togglePlayPauseFirst = () => {
+    if (firstVideoRef.current) {
+      if (isPlayingFirst) {
+        console.log('Pausing first video')
+        firstVideoRef.current.pause()
+      } else {
+        console.log('Playing first video')
+        firstVideoRef.current.play()
+      }
+    }
+  }
+  const togglePlayPauseSecond = () => {
+    if (secondVideoRef.current) {
+      if (isPlayingSecond) {
+        console.log('Pausing second video')
+        secondVideoRef.current.pause()
+      } else {
+        console.log('Playing second video')
+        secondVideoRef.current.play()
+      }
+    }
+  }
 
   const structuredData = {
     '@context': 'https://schema.org',
@@ -193,6 +261,9 @@ export default function Home() {
                   muted
                   playsInline
                   preload="auto"
+                  ref={firstVideoRef}
+                  onPlay={handlePlayFirst}
+                  onPause={handlePauseFirst}
                 />
                 {/* Dark Overlay */}
                 <div className="absolute inset-0 bg-black/60"></div>
@@ -206,6 +277,18 @@ export default function Home() {
                       —Psalm 46:10
                     </p>
                   </div>
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <button
+                    onClick={togglePlayPauseFirst}
+                    className="bg-black/50 hover:bg-black/70 text-white p-6 rounded-full transition-all duration-300 transform hover:scale-110 backdrop-blur-sm z-10"
+                  >
+                    {isPlayingFirst ? (
+                      <FaPause className="text-4xl" />
+                    ) : (
+                      <FaPlay className="text-4xl ml-2" />
+                    )}
+                  </button>
                 </div>
               </div>
               <p className="text-gray-600 text-center mt-4 text-lg">
@@ -253,17 +336,16 @@ export default function Home() {
                     loop
                     playsInline
                     preload="auto"
-                    ref={videoRef}
-                    onPlay={handleVideoPlay}
-                    onPause={handleVideoPause}
+                    ref={secondVideoRef}
+                    onPlay={handlePlaySecond}
+                    onPause={handlePauseSecond}
                   />
-                  {/* Custom Play/Pause Button Overlay */}
                   <div className="absolute inset-0 flex items-center justify-center">
                     <button
-                      onClick={togglePlayPause}
+                      onClick={togglePlayPauseSecond}
                       className="bg-black/50 hover:bg-black/70 text-white p-6 rounded-full transition-all duration-300 transform hover:scale-110 backdrop-blur-sm z-10"
                     >
-                      {isPlaying ? (
+                      {isPlayingSecond ? (
                         <FaPause className="text-4xl" />
                       ) : (
                         <FaPlay className="text-4xl ml-2" />
