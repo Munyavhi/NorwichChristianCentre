@@ -251,7 +251,7 @@ export default function Home() {
               <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl shadow-primary/20">
                 <video
                   src="/images/NCCV1.mp4"
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-full object-cover object-center cursor-pointer"
                   style={{ 
                     objectPosition: 'center 10%',
                     filter: 'brightness(1.05) contrast(1.05)',
@@ -264,11 +264,12 @@ export default function Home() {
                   ref={firstVideoRef}
                   onPlay={handlePlayFirst}
                   onPause={handlePauseFirst}
+                  onClick={togglePlayPauseFirst}
                 />
                 {/* Dark Overlay */}
                 <div className="absolute inset-0 bg-black/60"></div>
                 {/* Bible Verse Message */}
-                <div className="absolute inset-0 flex items-center justify-center">
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                   <div className="text-center text-white px-6 animate-float">
                     <p className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
                       "Be still and know that I am God."
@@ -277,18 +278,6 @@ export default function Home() {
                       —Psalm 46:10
                     </p>
                   </div>
-                </div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <button
-                    onClick={togglePlayPauseFirst}
-                    className="bg-black/50 hover:bg-black/70 text-white p-6 rounded-full transition-all duration-300 transform hover:scale-110 backdrop-blur-sm z-10"
-                  >
-                    {isPlayingFirst ? (
-                      <FaPause className="text-4xl" />
-                    ) : (
-                      <FaPlay className="text-4xl ml-2" />
-                    )}
-                  </button>
                 </div>
               </div>
               <p className="text-gray-600 text-center mt-4 text-lg">
