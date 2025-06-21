@@ -152,14 +152,13 @@ export default function About() {
                 Faith Community
               </h2>
               <div className="relative w-full max-w-4xl mx-auto h-[400px] mb-8 rounded-xl overflow-hidden shadow-2xl ring-4 ring-orange-200">
-                <Image
-                  src="/images/Fellowship Team3.jpg"
-                  alt="Faith Community Fellowship at Norwich Christian Centre"
-                  fill
-                  className="object-cover"
-                  priority
-                  sizes="(max-width: 1200px) 100vw, 1200px"
-                  quality={85}
+                <video
+                  src="/images/V2.mp4"
+                  className="w-full h-full object-cover"
+                  loop
+                  muted
+                  playsInline
+                  preload="auto"
                 />
               </div>
             </div>
