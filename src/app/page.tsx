@@ -385,8 +385,8 @@ export default function Home() {
         {/* Video Section */}
         <section ref={firstVideoSectionRef} className="py-20 bg-white">
           <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto">
-              <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl shadow-primary/20 mx-auto" style={{ maxWidth: '800px' }}>
+            <div className="max-w-5xl mx-auto">
+              <ScrollAnimation animation="fade-in-up" className="relative w-full aspect-video rounded-3xl overflow-hidden shadow-2xl shadow-primary/20 mx-auto transform rotate-1 hover:rotate-0 transition-transform duration-500" style={{ maxWidth: '1000px' }}>
                 <video
                   src="/images/V3.mp4"
                   className="w-full h-full object-cover object-center cursor-pointer"
@@ -404,23 +404,47 @@ export default function Home() {
                   onClick={togglePlayPauseFirst}
                 />
                 {/* Dark Overlay - reduced opacity */}
-                <div className="absolute inset-0 bg-black/30 pointer-events-none"></div>
+                <div className="absolute inset-0 bg-black/40 pointer-events-none"></div>
                 {/* Custom overlay to hide video player elements and watermarks */}
                 <div className="absolute inset-0 bg-black/20 pointer-events-none z-10"></div>
+                
+                {/* Text Overlay */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
+                  <div className="text-center text-white px-6">
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight drop-shadow-2xl">
+                      Come and worship the lord with us
+                    </h2>
+                  </div>
+                </div>
+
+                {/* Play/Pause Button */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-auto z-30">
+                  <button
+                    onClick={togglePlayPauseFirst}
+                    className="bg-black/60 hover:bg-black/80 text-white p-8 rounded-full transition-all duration-300 transform hover:scale-110 backdrop-blur-sm border-2 border-white/20"
+                  >
+                    {isPlayingFirst ? (
+                      <FaPause className="text-5xl" />
+                    ) : (
+                      <FaPlay className="text-5xl ml-2" />
+                    )}
+                  </button>
+                </div>
+
                 {/* Bible Verse Message - shows when video is paused */}
                 {!isPlayingFirst && (
-                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
+                  <div className="absolute bottom-8 left-8 right-8 pointer-events-none z-20">
                     <div className="text-center text-white px-6 animate-float">
-                      <p className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
+                      <p className="text-2xl md:text-3xl font-bold mb-2 leading-tight drop-shadow-lg">
                         "Be still and know that I am God."
                       </p>
-                      <p className="text-xl md:text-2xl text-white/90 font-medium">
+                      <p className="text-lg md:text-xl text-white/90 font-medium">
                         —Psalm 46:10
                       </p>
                     </div>
                   </div>
                 )}
-              </div>
+              </ScrollAnimation>
               <p className="text-gray-600 text-center mt-4 text-lg">
                 
               </p>
