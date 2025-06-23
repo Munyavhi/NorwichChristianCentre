@@ -16,7 +16,6 @@ module.exports = {
       },
       fontFamily: {
         sans: ['var(--font-inter)'],
-        serif: ['var(--font-merriweather)'],
       },
       animation: {
         gradient: 'gradient 15s ease infinite',

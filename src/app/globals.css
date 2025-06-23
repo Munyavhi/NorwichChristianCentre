@@ -54,6 +54,10 @@ body {
     animation: softBounce 3s ease-in-out infinite;
   }
 
+  .animate-corner-to-corner {
+    animation: cornerToCorner 20s ease-in-out infinite;
+  }
+
   .animate-slide-up {
     animation: slideUp 0.5s ease-out forwards;
   }
@@ -219,6 +223,22 @@ a {
   }
 }
 
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  animation: gradient 15s ease infinite;
+}
+
 /* Intersection Observer animations */
 .animate-on-scroll {
   opacity: 0;
@@ -229,4 +249,178 @@ a {
 .animate-on-scroll.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Hide Next.js development indicator */
+#__next-build-watcher {
+  display: none !important;
+}
+
+/* Alternative selectors for Next.js indicator */
+[data-nextjs-build-watcher] {
+  display: none !important;
+}
+
+.nextjs-build-watcher {
+  display: none !important;
+}
+
+@keyframes cornerToCorner {
+  0% {
+    transform: translate(-20px, -20px);
+  }
+  25% {
+    transform: translate(20px, -20px);
+  }
+  50% {
+    transform: translate(20px, 20px);
+  }
+  75% {
+    transform: translate(-20px, 20px);
+  }
+  100% {
+    transform: translate(-20px, -20px);
+  }
+}
+
+/* Hide video player logos and controls */
+video::-webkit-media-controls {
+  display: none !important;
+}
+
+video::-webkit-media-controls-panel {
+  display: none !important;
+}
+
+video::-webkit-media-controls-play-button {
+  display: none !important;
+}
+
+video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+}
+
+video::-webkit-media-controls-overlay-play-button {
+  display: none !important;
+}
+
+video::-webkit-media-controls-overlay-enclosure {
+  display: none !important;
+}
+
+video::-webkit-media-controls-panel {
+  display: none !important;
+}
+
+video::-webkit-media-controls-timeline {
+  display: none !important;
+}
+
+video::-webkit-media-controls-current-time-display {
+  display: none !important;
+}
+
+video::-webkit-media-controls-time-remaining-display {
+  display: none !important;
+}
+
+video::-webkit-media-controls-mute-button {
+  display: none !important;
+}
+
+video::-webkit-media-controls-volume-slider {
+  display: none !important;
+}
+
+video::-webkit-media-controls-fullscreen-button {
+  display: none !important;
+}
+
+/* Hide any video player branding or logos */
+video::-webkit-media-controls-enclosure {
+  display: none !important;
+}
+
+/* Additional rules for other browsers */
+video::-moz-media-controls {
+  display: none !important;
+}
+
+video::-ms-media-controls {
+  display: none !important;
+}
+
+/* Hide any potential video player overlays */
+video::before,
+video::after {
+  display: none !important;
+}
+
+/* Ensure no video player UI shows */
+video {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Hide any video player branding */
+video::-webkit-media-controls-panel > * {
+  display: none !important;
+}
+
+/* Hide video player logo/branding specifically */
+video::-webkit-media-controls-panel > div[class*="logo"],
+video::-webkit-media-controls-panel > div[class*="brand"],
+video::-webkit-media-controls-panel > div[class*="watermark"] {
+  display: none !important;
+}
+
+/* Additional specific rules for bottom-left elements */
+video::-webkit-media-controls-panel > *:first-child,
+video::-webkit-media-controls-panel > *:last-child {
+  display: none !important;
+}
+
+/* Hide any elements positioned at bottom-left */
+video::-webkit-media-controls-panel > [style*="bottom-left"],
+video::-webkit-media-controls-panel > [style*="bottom left"],
+video::-webkit-media-controls-panel > [class*="bottom-left"],
+video::-webkit-media-controls-panel > [class*="bottom left"] {
+  display: none !important;
+}
+
+/* Target any video player branding that might be persistent */
+video::-webkit-media-controls-panel > div,
+video::-webkit-media-controls-panel > span,
+video::-webkit-media-controls-panel > img {
+  display: none !important;
+}
+
+/* Hide any video player overlays completely */
+video::-webkit-media-controls-overlay-enclosure {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Additional browser-specific rules */
+video::-moz-media-controls-panel > * {
+  display: none !important;
+}
+
+video::-ms-media-controls-panel > * {
+  display: none !important;
+}
+
+/* Hide any video player branding that might be in the video element itself */
+video > * {
+  display: none !important;
+}
+
+/* Ensure video controls are completely hidden */
+video::-webkit-media-controls-panel {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 } 

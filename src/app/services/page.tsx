@@ -15,14 +15,20 @@ export default function Services() {
   const [isPlaying, setIsPlaying] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
 
-  const togglePlayPause = () => {
+  const togglePlayPause = async () => {
     if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause()
-      } else {
-        videoRef.current.play()
+      try {
+        if (isPlaying) {
+          videoRef.current.pause()
+          setIsPlaying(false)
+        } else {
+          await videoRef.current.play()
+          setIsPlaying(true)
+        }
+      } catch (error) {
+        console.error('Error toggling video:', error)
+        setIsPlaying(false)
       }
-      setIsPlaying(!isPlaying)
     }
   }
 
@@ -91,7 +97,8 @@ export default function Services() {
               }}
               loop
               playsInline
-              preload="auto"
+              controls
+              preload="metadata"
               ref={videoRef}
               onPlay={handleVideoPlay}
               onPause={handleVideoPause}

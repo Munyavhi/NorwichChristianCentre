@@ -9,12 +9,17 @@ import ImageSlider from '@/components/ImageSlider'
 import LeadershipCard from '@/components/LeadershipCard'
 import AnimatedText from '@/components/AnimatedText'
 import { useState, useRef, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 
 export default function Home() {
   const [isPlayingFirst, setIsPlayingFirst] = useState(false)
   const [isPlayingSecond, setIsPlayingSecond] = useState(false)
+  const [isPlayingThird, setIsPlayingThird] = useState(false)
   const firstVideoRef = useRef<HTMLVideoElement>(null)
   const secondVideoRef = useRef<HTMLVideoElement>(null)
+  const thirdVideoRef = useRef<HTMLVideoElement>(null)
+  const firstVideoSectionRef = useRef<HTMLDivElement>(null)
+  const pathname = usePathname();
 
   // Ensure both videos are paused when component mounts
   useEffect(() => {
@@ -27,9 +32,66 @@ export default function Home() {
       secondVideoRef.current.pause()
       secondVideoRef.current.currentTime = 0
     }
+    if (thirdVideoRef.current) {
+      thirdVideoRef.current.pause()
+      thirdVideoRef.current.currentTime = 0
+    }
     setIsPlayingFirst(false)
     setIsPlayingSecond(false)
+    setIsPlayingThird(false)
   }, [])
+
+  // Pause videos on route change
+  useEffect(() => {
+    if (firstVideoRef.current) {
+      firstVideoRef.current.pause();
+      firstVideoRef.current.currentTime = 0;
+    }
+    if (secondVideoRef.current) {
+      secondVideoRef.current.pause();
+      secondVideoRef.current.currentTime = 0;
+    }
+    if (thirdVideoRef.current) {
+      thirdVideoRef.current.pause();
+      thirdVideoRef.current.currentTime = 0;
+    }
+    setIsPlayingFirst(false);
+    setIsPlayingSecond(false);
+    setIsPlayingThird(false);
+  }, [pathname]);
+
+  // Intersection Observer for first video autoplay
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && firstVideoRef.current && !isPlayingFirst) {
+            // Video is in view but don't autoplay with sound (browser restriction)
+            // Just show the Bible verse overlay
+            console.log('First video in view')
+          } else if (!entry.isIntersecting && firstVideoRef.current && isPlayingFirst) {
+            // Video is out of view and playing, so pause it
+            firstVideoRef.current.pause()
+            setIsPlayingFirst(false)
+          }
+        })
+      },
+      {
+        threshold: 0.5, // Trigger when 50% of the video is visible
+        rootMargin: '0px 0px -100px 0px' // Start playing slightly before fully in view
+      }
+    )
+
+    if (firstVideoSectionRef.current) {
+      observer.observe(firstVideoSectionRef.current)
+    }
+
+    return () => {
+      if (firstVideoSectionRef.current) {
+        observer.unobserve(firstVideoSectionRef.current)
+      }
+    }
+  }, [isPlayingFirst])
 
   // Additional safeguard to prevent autoplay
   useEffect(() => {
@@ -53,7 +115,7 @@ export default function Home() {
   }, [])
 
   // Function to pause all videos except the specified one
-  const pauseAllVideosExcept = (exceptVideoRef: React.RefObject<HTMLVideoElement>) => {
+  const pauseAllVideosExcept = (exceptVideoRef: React.RefObject<HTMLVideoElement | null>) => {
     if (firstVideoRef.current && firstVideoRef.current !== exceptVideoRef.current) {
       firstVideoRef.current.pause()
       setIsPlayingFirst(false)
@@ -62,34 +124,25 @@ export default function Home() {
       secondVideoRef.current.pause()
       setIsPlayingSecond(false)
     }
+    if (thirdVideoRef.current && thirdVideoRef.current !== exceptVideoRef.current) {
+      thirdVideoRef.current.pause()
+      setIsPlayingThird(false)
+    }
   }
 
   const handlePlayFirst = () => {
-    console.log('First video playing, pausing second video')
+    console.log('First video playing, pausing other videos')
     // Pause all other videos
     pauseAllVideosExcept(firstVideoRef)
     // Update state
     setIsPlayingFirst(true)
     setIsPlayingSecond(false)
+    setIsPlayingThird(false)
   }
 
   const handlePauseFirst = () => {
     console.log('First video paused')
     setIsPlayingFirst(false)
-  }
-
-  const handlePlaySecond = () => {
-    console.log('Second video playing, pausing first video')
-    // Pause all other videos
-    pauseAllVideosExcept(secondVideoRef)
-    // Update state
-    setIsPlayingSecond(true)
-    setIsPlayingFirst(false)
-  }
-
-  const handlePauseSecond = () => {
-    console.log('Second video paused')
-    setIsPlayingSecond(false)
   }
 
   const togglePlayPauseFirst = async () => {
@@ -98,17 +151,46 @@ export default function Home() {
         if (isPlayingFirst) {
           console.log('Pausing first video')
           firstVideoRef.current.pause()
+          setIsPlayingFirst(false)
         } else {
           console.log('Playing first video')
           // Pause all other videos first
           pauseAllVideosExcept(firstVideoRef)
           // Then play this video
           await firstVideoRef.current.play()
+          setIsPlayingFirst(true)
         }
       } catch (error) {
         console.error('Error toggling first video:', error)
+        setIsPlayingFirst(false)
       }
     }
+  }
+
+  const handlePlaySecond = () => {
+    console.log('Second video playing, pausing other videos')
+    // Pause all other videos
+    pauseAllVideosExcept(secondVideoRef)
+    // Update state
+    setIsPlayingSecond(true)
+  }
+
+  const handlePauseSecond = () => {
+    console.log('Second video paused')
+    setIsPlayingSecond(false)
+  }
+
+  const handlePlayThird = () => {
+    console.log('Third video playing, pausing other videos')
+    // Pause all other videos
+    pauseAllVideosExcept(thirdVideoRef)
+    // Update state
+    setIsPlayingThird(true)
+  }
+
+  const handlePauseThird = () => {
+    console.log('Third video paused')
+    setIsPlayingThird(false)
   }
 
   const togglePlayPauseSecond = async () => {
@@ -117,15 +199,40 @@ export default function Home() {
         if (isPlayingSecond) {
           console.log('Pausing second video')
           secondVideoRef.current.pause()
+          setIsPlayingSecond(false)
         } else {
           console.log('Playing second video')
           // Pause all other videos first
           pauseAllVideosExcept(secondVideoRef)
           // Then play this video
           await secondVideoRef.current.play()
+          setIsPlayingSecond(true)
         }
       } catch (error) {
         console.error('Error toggling second video:', error)
+        setIsPlayingSecond(false)
+      }
+    }
+  }
+
+  const togglePlayPauseThird = async () => {
+    if (thirdVideoRef.current) {
+      try {
+        if (isPlayingThird) {
+          console.log('Pausing third video')
+          thirdVideoRef.current.pause()
+          setIsPlayingThird(false)
+        } else {
+          console.log('Playing third video')
+          // Pause all other videos first
+          pauseAllVideosExcept(thirdVideoRef)
+          // Then play this video
+          await thirdVideoRef.current.play()
+          setIsPlayingThird(true)
+        }
+      } catch (error) {
+        console.error('Error toggling third video:', error)
+        setIsPlayingThird(false)
       }
     }
   }
@@ -187,7 +294,7 @@ export default function Home() {
 
           {/* Hero Content */}
           <ScrollAnimation animation="fade-in" className="relative h-full flex flex-col items-center justify-center text-white text-center px-4">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-corner-to-corner">
               Welcome to Norwich Christian Centre
             </h1>
           </ScrollAnimation>
@@ -276,15 +383,12 @@ export default function Home() {
         </section>
 
         {/* Video Section */}
-        <section className="py-20 bg-white">
+        <section ref={firstVideoSectionRef} className="py-20 bg-white">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-primary text-center mb-8">
-                Our Preacher
-              </h2>
-              <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl shadow-primary/20">
+            <div className="max-w-3xl mx-auto">
+              <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl shadow-primary/20 mx-auto" style={{ maxWidth: '800px' }}>
                 <video
-                  src="/images/NCCV1.mp4"
+                  src="/images/V3.mp4"
                   className="w-full h-full object-cover object-center cursor-pointer"
                   style={{ 
                     objectPosition: 'center 10%',
@@ -292,7 +396,6 @@ export default function Home() {
                     transform: 'scale(1.02)'
                   }}
                   loop
-                  muted
                   playsInline
                   preload="metadata"
                   ref={firstVideoRef}
@@ -300,19 +403,23 @@ export default function Home() {
                   onPause={handlePauseFirst}
                   onClick={togglePlayPauseFirst}
                 />
-                {/* Dark Overlay */}
-                <div className="absolute inset-0 bg-black/60"></div>
-                {/* Bible Verse Message */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="text-center text-white px-6 animate-float">
-                    <p className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
-                      "Be still and know that I am God."
-                    </p>
-                    <p className="text-xl md:text-2xl text-white/90 font-medium">
-                      —Psalm 46:10
-                    </p>
+                {/* Dark Overlay - reduced opacity */}
+                <div className="absolute inset-0 bg-black/30 pointer-events-none"></div>
+                {/* Custom overlay to hide video player elements and watermarks */}
+                <div className="absolute inset-0 bg-black/20 pointer-events-none z-10"></div>
+                {/* Bible Verse Message - shows when video is paused */}
+                {!isPlayingFirst && (
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
+                    <div className="text-center text-white px-6 animate-float">
+                      <p className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
+                        "Be still and know that I am God."
+                      </p>
+                      <p className="text-xl md:text-2xl text-white/90 font-medium">
+                        —Psalm 46:10
+                      </p>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
               <p className="text-gray-600 text-center mt-4 text-lg">
                 
@@ -357,10 +464,8 @@ export default function Home() {
                     src="/images/V1.mp4"
                     className="w-full h-full object-cover"
                     loop
-                    muted
                     playsInline
-                    preload="none"
-                    poster="/images/V1.mp4"
+                    preload="metadata"
                     ref={secondVideoRef}
                     onPlay={handlePlaySecond}
                     onPause={handlePauseSecond}
@@ -418,6 +523,47 @@ export default function Home() {
                   <p className="text-center text-lg font-medium text-gray-700 mt-8">
                     May you find peace in His presence, strength in His promises, and joy in His unfailing love.
                   </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* V2 Video Section */}
+        <section className="py-20 bg-gradient-to-br from-indigo-200 via-purple-200 to-pink-200">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl shadow-primary/20">
+                <video
+                  src="/images/V2.mp4"
+                  className="w-full h-full object-cover object-center"
+                  style={{ 
+                    objectPosition: 'center 10%',
+                    filter: 'brightness(1.2) contrast(1.1)',
+                    transform: 'scale(1.02)'
+                  }}
+                  loop
+                  playsInline
+                  controls
+                  preload="metadata"
+                  ref={thirdVideoRef}
+                  onPlay={handlePlayThird}
+                  onPause={handlePauseThird}
+                />
+                {/* Dark Overlay */}
+                <div className="absolute inset-0 bg-black/40"></div>
+                {/* Custom Play/Pause Button Overlay */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <button
+                    onClick={togglePlayPauseThird}
+                    className="bg-black/50 hover:bg-black/70 text-white p-6 rounded-full transition-all duration-300 transform hover:scale-110 backdrop-blur-sm z-10"
+                  >
+                    {isPlayingThird ? (
+                      <FaPause className="text-4xl" />
+                    ) : (
+                      <FaPlay className="text-4xl ml-2" />
+                    )}
+                  </button>
                 </div>
               </div>
             </div>
@@ -517,9 +663,6 @@ export default function Home() {
         <section className="py-20 bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent mb-6">
-                Faith Community
-              </h2>
               <div className="relative w-full max-w-4xl mx-auto h-[400px] mb-8 rounded-xl overflow-hidden shadow-2xl ring-4 ring-orange-200">
                 <Image
                   src="/images/Fellowship Team3.jpg"
@@ -530,6 +673,12 @@ export default function Home() {
                   sizes="(max-width: 1200px) 100vw, 1200px"
                   quality={85}
                 />
+                {/* Faith Community Title Overlay */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <h2 className="text-4xl md:text-5xl font-bold text-white drop-shadow-2xl z-10">
+                    Faith Community
+                  </h2>
+                </div>
               </div>
               <AnimatedText />
             </div>
