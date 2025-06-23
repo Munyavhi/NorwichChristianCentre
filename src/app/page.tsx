@@ -385,8 +385,16 @@ export default function Home() {
         {/* Video Section */}
         <section ref={firstVideoSectionRef} className="py-20 bg-white">
           <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
-              <ScrollAnimation animation="fade-in-up" className="relative w-full aspect-video rounded-3xl overflow-hidden shadow-2xl shadow-primary/20 mx-auto transform rotate-1 hover:rotate-0 transition-transform duration-500" style={{ maxWidth: '1000px' }}>
+            <div className="max-w-7xl mx-auto">
+              {/* Title */}
+              <div className="text-center mb-12">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+                  Encounter: A Time of Worship and Praise
+                </h2>
+                <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto rounded-full"></div>
+              </div>
+              
+              <ScrollAnimation animation="fade-in" className="relative w-full aspect-video rounded-3xl overflow-hidden shadow-2xl shadow-primary/20 mx-auto transform rotate-1 hover:rotate-0 transition-transform duration-500 max-w-7xl">
                 <video
                   src="/images/V3.mp4"
                   className="w-full h-full object-cover object-center cursor-pointer"
@@ -408,15 +416,6 @@ export default function Home() {
                 {/* Custom overlay to hide video player elements and watermarks */}
                 <div className="absolute inset-0 bg-black/20 pointer-events-none z-10"></div>
                 
-                {/* Text Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
-                  <div className="text-center text-white px-6">
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight drop-shadow-2xl">
-                      Come and worship the lord with us
-                    </h2>
-                  </div>
-                </div>
-
                 {/* Play/Pause Button */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-auto z-30">
                   <button
