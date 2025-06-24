@@ -417,7 +417,7 @@ export default function Home() {
                 <div className="absolute inset-0 bg-black/20 pointer-events-none z-10"></div>
                 
                 {/* Play/Pause Button */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-auto z-30">
+                <div className={`absolute inset-0 flex items-center justify-center pointer-events-auto z-30 transition-opacity duration-300 ${isPlayingFirst ? 'opacity-0 hover:opacity-100' : 'opacity-100'}`}>
                   <button
                     onClick={togglePlayPauseFirst}
                     className="bg-black/60 hover:bg-black/80 text-white p-8 rounded-full transition-all duration-300 transform hover:scale-110 backdrop-blur-sm border-2 border-white/20"
@@ -493,7 +493,7 @@ export default function Home() {
                     onPlay={handlePlaySecond}
                     onPause={handlePauseSecond}
                   />
-                  <div className="absolute inset-0 flex items-center justify-center">
+                  <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${isPlayingSecond ? 'opacity-0 hover:opacity-100' : 'opacity-100'}`}>
                     <button
                       onClick={togglePlayPauseSecond}
                       className="bg-black/50 hover:bg-black/70 text-white p-6 rounded-full transition-all duration-300 transform hover:scale-110 backdrop-blur-sm z-10"
@@ -576,7 +576,7 @@ export default function Home() {
                 {/* Dark Overlay */}
                 <div className="absolute inset-0 bg-black/40"></div>
                 {/* Custom Play/Pause Button Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center">
+                <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${isPlayingThird ? 'opacity-0 hover:opacity-100' : 'opacity-100'}`}>
                   <button
                     onClick={togglePlayPauseThird}
                     className="bg-black/50 hover:bg-black/70 text-white p-6 rounded-full transition-all duration-300 transform hover:scale-110 backdrop-blur-sm z-10"
